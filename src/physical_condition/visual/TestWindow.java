@@ -1,10 +1,13 @@
 package physical_condition.visual;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.regex.Pattern;
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
+import physical_condition.Connection;
+import physical_condition.customs.Button;
 
 public class TestWindow extends javax.swing.JFrame {
 
@@ -13,6 +16,7 @@ public class TestWindow extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setIconImage(this.getIconImage());
         tf_age.requestFocus();
+        enabled_tabs(false);
     }
 
     @Override
@@ -26,6 +30,7 @@ public class TestWindow extends javax.swing.JFrame {
     private void initComponents() {
 
         bgroup_coordination = new javax.swing.ButtonGroup();
+        bgroup_flexibility = new javax.swing.ButtonGroup();
         bg = new javax.swing.JPanel();
         tabbed = new physical_condition.customs.MaterialTabbed();
         jp_biometric = new javax.swing.JPanel();
@@ -56,18 +61,43 @@ public class TestWindow extends javax.swing.JFrame {
         jp_footer2 = new javax.swing.JPanel();
         btn_next2 = new physical_condition.customs.Button();
         btn_previous2 = new physical_condition.customs.Button();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jLabel6 = new javax.swing.JLabel();
+        rb_fle_1 = new physical_condition.customs.RadioButton();
+        rb_fle_2 = new physical_condition.customs.RadioButton();
+        rb_fle_3 = new physical_condition.customs.RadioButton();
+        rb_fle_4 = new physical_condition.customs.RadioButton();
+        rb_fle_5 = new physical_condition.customs.RadioButton();
+        rb_fle_6 = new physical_condition.customs.RadioButton();
         jp_strength = new javax.swing.JPanel();
         jp_footer3 = new javax.swing.JPanel();
         btn_next3 = new physical_condition.customs.Button();
         btn_previous3 = new physical_condition.customs.Button();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea3 = new javax.swing.JTextArea();
+        tf_repeat = new physical_condition.customs.TextField();
+        jLabel7 = new javax.swing.JLabel();
         jp_resistance = new javax.swing.JPanel();
         jp_footer4 = new javax.swing.JPanel();
         btn_finish = new physical_condition.customs.Button();
         btn_previous4 = new physical_condition.customs.Button();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextArea4 = new javax.swing.JTextArea();
+        jl_msg = new javax.swing.JLabel();
+        tf_pulse1 = new physical_condition.customs.TextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        tf_pulse2 = new physical_condition.customs.TextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Condición Física");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -111,7 +141,7 @@ public class TestWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_footer5Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(btn_mainmenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 419, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 427, Short.MAX_VALUE)
                 .addComponent(btn_next, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
@@ -131,10 +161,25 @@ public class TestWindow extends javax.swing.JFrame {
         jLabel2.setText("Edad");
 
         tf_age.setToolTipText("Inserte su edad");
+        tf_age.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tf_ageKeyReleased(evt);
+            }
+        });
 
         tf_weight.setToolTipText("Inserte su peso en kilogramos");
+        tf_weight.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tf_weightKeyReleased(evt);
+            }
+        });
 
         tf_height.setToolTipText("Inserte su altura en centímetros");
+        tf_height.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tf_heightKeyReleased(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel3.setText("Altura (cm)");
@@ -252,6 +297,11 @@ public class TestWindow extends javax.swing.JFrame {
         rb_coo_1.setFocusPainted(false);
         rb_coo_1.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         rb_coo_1.setIconTextGap(8);
+        rb_coo_1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rb_coo_1ActionPerformed(evt);
+            }
+        });
 
         bgroup_coordination.add(rb_coo_2);
         rb_coo_2.setText("Mantiene el equilibrio al menos cinco segundos, aunque sea necesario balancearse.");
@@ -273,6 +323,11 @@ public class TestWindow extends javax.swing.JFrame {
         rb_coo_5.setFocusPainted(false);
         rb_coo_5.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         rb_coo_5.setIconTextGap(8);
+        rb_coo_5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rb_coo_5ActionPerformed(evt);
+            }
+        });
 
         bgroup_coordination.add(rb_coo_4);
         rb_coo_4.setText("Mantiene el equilibrio al menos cinco segundos con los ojos cerrados, aunque sea balanceándose.");
@@ -301,22 +356,22 @@ public class TestWindow extends javax.swing.JFrame {
         jp_coordination.setLayout(jp_coordinationLayout);
         jp_coordinationLayout.setHorizontalGroup(
             jp_coordinationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jp_footer1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jp_footer1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jp_coordinationLayout.createSequentialGroup()
-                .addGroup(jp_coordinationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(32, 32, 32)
+                .addGroup(jp_coordinationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jp_coordinationLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(rb_coo_5, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jp_coordinationLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(jp_coordinationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jp_coordinationLayout.createSequentialGroup()
+                        .addGroup(jp_coordinationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(rb_coo_5, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
                             .addComponent(rb_coo_4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rb_coo_3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)
+                            .addComponent(rb_coo_3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(rb_coo_2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(rb_coo_1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(33, Short.MAX_VALUE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(32, 32, 32))))
         );
         jp_coordinationLayout.setVerticalGroup(
             jp_coordinationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -380,7 +435,7 @@ public class TestWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_footer2Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(btn_previous2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 433, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_next2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
@@ -393,18 +448,112 @@ public class TestWindow extends javax.swing.JFrame {
                     .addComponent(btn_previous2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        jScrollPane2.setBorder(null);
+
+        jTextArea2.setBackground(new java.awt.Color(255, 255, 255));
+        jTextArea2.setColumns(20);
+        jTextArea2.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        jTextArea2.setLineWrap(true);
+        jTextArea2.setRows(6);
+        jTextArea2.setText("Sentarse en el suelo con la espalda recta, las piernas juntas y rectas, los brazos estirados hacia adelante. Los pies se mantienen en ángulo recto. Se inclina la parte superior del cuerpo hacia delante lentamente tanto como se pueda.\nSe comprueba cuál es la posición que se es capaz de mantener sin dolor durante cinco segundos y se observa la distancia que hay entre los dedos de las manos y los dedos de los pies.\n");
+        jTextArea2.setWrapStyleWord(true);
+        jTextArea2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextArea2.setFocusable(false);
+        jScrollPane2.setViewportView(jTextArea2);
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel6.setText("Seleccione:");
+
+        bgroup_flexibility.add(rb_fle_1);
+        rb_fle_1.setSelected(true);
+        rb_fle_1.setText("La distancia entre los dedos de las manos y los dedos de los pies es más de un palmo.");
+        rb_fle_1.setActionCommand("No mantiene el equilibrio");
+        rb_fle_1.setFocusPainted(false);
+        rb_fle_1.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        rb_fle_1.setIconTextGap(8);
+
+        bgroup_flexibility.add(rb_fle_2);
+        rb_fle_2.setText("La distancia es aproximadamente de un palmo.");
+        rb_fle_2.setActionCommand("No mantiene el equilibrio");
+        rb_fle_2.setFocusPainted(false);
+        rb_fle_2.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        rb_fle_2.setIconTextGap(8);
+
+        bgroup_flexibility.add(rb_fle_3);
+        rb_fle_3.setText("La distancia equivale a la longitud del dedo índice.");
+        rb_fle_3.setActionCommand("No mantiene el equilibrio");
+        rb_fle_3.setFocusPainted(false);
+        rb_fle_3.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        rb_fle_3.setIconTextGap(8);
+
+        bgroup_flexibility.add(rb_fle_4);
+        rb_fle_4.setText("El dedo índice toca las puntas de los dedos de los pies.");
+        rb_fle_4.setActionCommand("No mantiene el equilibrio");
+        rb_fle_4.setFocusPainted(false);
+        rb_fle_4.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        rb_fle_4.setIconTextGap(8);
+
+        bgroup_flexibility.add(rb_fle_5);
+        rb_fle_5.setText("Las puntas de los dedos de las manos se tocan con las puntas de los dedos de los pies.");
+        rb_fle_5.setActionCommand("No mantiene el equilibrio");
+        rb_fle_5.setFocusPainted(false);
+        rb_fle_5.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        rb_fle_5.setIconTextGap(8);
+
+        bgroup_flexibility.add(rb_fle_6);
+        rb_fle_6.setText("Las manos cubren los dedos de los pies en toda su longitud.");
+        rb_fle_6.setActionCommand("No mantiene el equilibrio");
+        rb_fle_6.setFocusPainted(false);
+        rb_fle_6.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        rb_fle_6.setIconTextGap(8);
+
         javax.swing.GroupLayout jp_flexibilityLayout = new javax.swing.GroupLayout(jp_flexibility);
         jp_flexibility.setLayout(jp_flexibilityLayout);
         jp_flexibilityLayout.setHorizontalGroup(
             jp_flexibilityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_flexibilityLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jp_footer2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jp_footer2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jp_flexibilityLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(jp_flexibilityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jp_flexibilityLayout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_flexibilityLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32))
+                    .addGroup(jp_flexibilityLayout.createSequentialGroup()
+                        .addComponent(rb_fle_1, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jp_flexibilityLayout.createSequentialGroup()
+                        .addGroup(jp_flexibilityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rb_fle_6, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rb_fle_5, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rb_fle_4, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rb_fle_3, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rb_fle_2, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jp_flexibilityLayout.setVerticalGroup(
             jp_flexibilityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_flexibilityLayout.createSequentialGroup()
-                .addGap(0, 404, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rb_fle_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rb_fle_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rb_fle_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rb_fle_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rb_fle_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rb_fle_6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(jp_footer2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -448,7 +597,7 @@ public class TestWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_footer3Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(btn_previous3, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 433, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_next3, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
@@ -461,18 +610,48 @@ public class TestWindow extends javax.swing.JFrame {
                     .addComponent(btn_previous3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        jScrollPane3.setBorder(null);
+
+        jTextArea3.setBackground(new java.awt.Color(255, 255, 255));
+        jTextArea3.setColumns(20);
+        jTextArea3.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        jTextArea3.setLineWrap(true);
+        jTextArea3.setRows(9);
+        jTextArea3.setText("Tumbarse de espaldas con las rodillas flexionadas y las plantas de los pies en contacto con el suelo. Los brazos reposan al lado del cuerpo y en contacto con este. Los dedos de las manos apuntan a los pies. Se hace una marca en el suelo en el punto exacto en donde finalizan los dedos de las manos. Luego se hace otra señal a 10 cm del punto anterior y en dirección a los pies. Ahora se tienen que levantar la cabeza y los hombros hasta que se sea capaz de llegar a la segunda marca. Después se vuelve a la posición inicial, pero sin dejar reposar la cabeza en el suelo y manteniendo la tensión abdominal.\nUn movimiento completo dura alrededor de tres segundos. Se repite el ejercicio tantas veces como sea posible.");
+        jTextArea3.setWrapStyleWord(true);
+        jTextArea3.setAlignmentX(0.0F);
+        jTextArea3.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextArea3.setFocusable(false);
+        jScrollPane3.setViewportView(jTextArea3);
+
+        tf_repeat.setToolTipText("Inserte la cantidad de repeticiones");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel7.setText("Complete con la cantidad de repeticiones:");
+
         javax.swing.GroupLayout jp_strengthLayout = new javax.swing.GroupLayout(jp_strength);
         jp_strength.setLayout(jp_strengthLayout);
         jp_strengthLayout.setHorizontalGroup(
             jp_strengthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_strengthLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jp_footer3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jp_footer3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jp_strengthLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(jp_strengthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tf_repeat, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
         );
         jp_strengthLayout.setVerticalGroup(
             jp_strengthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_strengthLayout.createSequentialGroup()
-                .addGap(0, 404, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel7)
+                .addGap(8, 8, 8)
+                .addComponent(tf_repeat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
                 .addComponent(jp_footer3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -516,7 +695,7 @@ public class TestWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_footer4Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(btn_previous4, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 433, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_finish, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
@@ -529,18 +708,70 @@ public class TestWindow extends javax.swing.JFrame {
                     .addComponent(btn_previous4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        jScrollPane4.setBorder(null);
+
+        jTextArea4.setBackground(new java.awt.Color(255, 255, 255));
+        jTextArea4.setColumns(20);
+        jTextArea4.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        jTextArea4.setLineWrap(true);
+        jTextArea4.setRows(6);
+        jTextArea4.setText("Lo primero que se debe hacer es tomarse el pulso. Para ello se cuentan los latidos en una muñeca durante 30 segundos. A continuación, hay que colocarse ante un escalón doble -unos 35 cm de altura- para subirlo y bajarlo con una pierna. Tras tres minutos se cambia la pierna. \nTras finalizar el ejercicio se mide de nuevo el pulso. De este segundo resultado se resta el valor del pulso en reposo.\n");
+        jTextArea4.setWrapStyleWord(true);
+        jTextArea4.setAlignmentX(0.0F);
+        jTextArea4.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextArea4.setFocusable(false);
+        jScrollPane4.setViewportView(jTextArea4);
+
+        jl_msg.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+
+        tf_pulse1.setToolTipText("Inserte la cantidad de pulsaciones antes de iniciar");
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel8.setText("Pulso antes de iniciar el ejercicio:");
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel9.setText("Pulso al finalizar el ejercicio:");
+
+        tf_pulse2.setToolTipText("Inserte la cantidad de pulsaciones al finalizar");
+
         javax.swing.GroupLayout jp_resistanceLayout = new javax.swing.GroupLayout(jp_resistance);
         jp_resistance.setLayout(jp_resistanceLayout);
         jp_resistanceLayout.setHorizontalGroup(
             jp_resistanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_resistanceLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jp_footer4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jp_footer4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jp_resistanceLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(jp_resistanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jp_resistanceLayout.createSequentialGroup()
+                        .addComponent(jl_msg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jp_resistanceLayout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jp_resistanceLayout.createSequentialGroup()
+                        .addGroup(jp_resistanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tf_pulse2, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_pulse1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jp_resistanceLayout.setVerticalGroup(
             jp_resistanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_resistanceLayout.createSequentialGroup()
-                .addGap(0, 404, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(jl_msg)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tf_pulse1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tf_pulse2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addComponent(jp_footer4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -615,6 +846,53 @@ public class TestWindow extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btn_mainmenuActionPerformed
 
+    private void rb_coo_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_coo_1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rb_coo_1ActionPerformed
+
+    private void rb_coo_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_coo_5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rb_coo_5ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        MainWindow mw = new MainWindow();
+        mw.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
+
+    private void tf_ageKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_ageKeyReleased
+        if (is_biometric_valid()){
+            enabled_tabs(true);
+            // mostar mensaje con la cantidad de repeticiones a hacer
+            double weight = Double.parseDouble(tf_weight.getText());
+            jl_msg.setText("Dado su peso corporal ("+ weight +"kg), usted debe realizar el ejercicio indicado con "+ repeats(weight) +" repeticiones.");
+        }else{
+            enabled_tabs(false);
+        }
+    }//GEN-LAST:event_tf_ageKeyReleased
+
+    private void tf_weightKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_weightKeyReleased
+        if (is_biometric_valid()){
+            enabled_tabs(true);
+            // mostar mensaje con la cantidad de repeticiones a hacer
+            double weight = Double.parseDouble(tf_weight.getText());
+            jl_msg.setText("Dado su peso corporal ("+ weight +"kg), usted debe realizar el ejercicio indicado con "+ repeats(weight) +" repeticiones.");
+        }else{
+            enabled_tabs(false);
+        }
+    }//GEN-LAST:event_tf_weightKeyReleased
+
+    private void tf_heightKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_heightKeyReleased
+        if (is_biometric_valid()){
+            enabled_tabs(true);
+            // mostar mensaje con la cantidad de repeticiones a hacer
+            double weight = Double.parseDouble(tf_weight.getText());
+            jl_msg.setText("Dado su peso corporal ("+ weight +"kg), usted debe realizar el ejercicio indicado con "+ repeats(weight) +" repeticiones.");
+        }else{
+            enabled_tabs(false);
+        }
+    }//GEN-LAST:event_tf_heightKeyReleased
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -663,14 +941,20 @@ public class TestWindow extends javax.swing.JFrame {
     }
     
     private void actionFinish() {
-        System.out.println("Finish");
-        System.out.println(""+optionSelected(bgroup_coordination));
         String weight = tf_weight.getText();
         String height = tf_height.getText();
-        if (isFieldValids()) {
-            System.out.println("valid");
-            System.out.println(""+imc(Double.parseDouble(weight), Double.parseDouble(height)));
-        }  
+        if (is_biometric_valid() && is_strenght_valid() && is_resistance_valid()) {
+            // obtener datos insertados 
+            System.out.println("Valid fields");
+            String imc = imc(Double.parseDouble(weight), Double.parseDouble(height));
+            String age = tf_age.getText();
+            String option_coordination = optionSelected(bgroup_coordination);
+            String option_flexibility = optionSelected(bgroup_flexibility);
+            String strenght_repeats = tf_repeat.getText();
+            int heart_rate = heart_rate_difference();
+            // consultar el prolog
+            String msg = connect_with_prolog();
+       }  
     }
     
     private String optionSelected(ButtonGroup button_group){
@@ -705,7 +989,7 @@ public class TestWindow extends javax.swing.JFrame {
         return pattern.matcher(input).matches();
     }
     
-    private boolean isFieldValids(){
+    private boolean is_biometric_valid(){
         String age = tf_age.getText();
         String weight = tf_weight.getText();
         String height = tf_height.getText();
@@ -716,10 +1000,67 @@ public class TestWindow extends javax.swing.JFrame {
         }
         return false;
     }
+    
+    private boolean is_strenght_valid(){
+        String repeat = tf_repeat.getText();
+        return isInteger(repeat) && Integer.parseInt(repeat) > 0;
+    }
+    
+    private boolean is_resistance_valid(){
+        String pulse1 = tf_pulse1.getText();
+        String pulse2 = tf_pulse2.getText();
+        return isInteger(pulse1) && Integer.parseInt(pulse1) > 0
+                && isInteger(pulse2) && Integer.parseInt(pulse2) > 0;
+    }
+    
+    private int repeats(double weight){
+        int repeat = 0;
+        if (weight <= 60){
+            repeat = 30;
+        }else if(weight <= 80){
+            repeat = 25;
+        }else{
+            repeat = 20;
+        }
+        return repeat;
+    }
+    
+    private void enabled_tabs(boolean enabled){
+        tabbed.setEnabledAt(1, enabled);
+        tabbed.setEnabledAt(2, enabled);
+        tabbed.setEnabledAt(3, enabled);
+        tabbed.setEnabledAt(4, enabled);
+        status_button(btn_next, enabled);
+    }
+    
+    private void status_button(Button btn, boolean enabled){
+        btn.setEnabled(enabled);
+        if (enabled){
+            btn.setBackground(new Color(0,102,255));
+        }else{
+            btn.setBackground(Color.gray);
+        }
+    }
+    
+    private int heart_rate_difference(){
+        int pulse1 = Integer.parseInt(tf_pulse1.getText());
+        int pulse2 =  Integer.parseInt(tf_pulse2.getText());     
+        return (pulse2*2) - (pulse1*2);       
+    }
+    
+    private String connect_with_prolog(){
+        String[] files = new String[1];
+        files[0] = "src/physical_condition/file.pl";
+        Connection c = new Connection(files);
+
+        String res = c.sintomas();
+        return res;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private javax.swing.ButtonGroup bgroup_coordination;
+    private javax.swing.ButtonGroup bgroup_flexibility;
     private physical_condition.customs.Button btn_finish;
     private physical_condition.customs.Button btn_mainmenu;
     private physical_condition.customs.Button btn_next;
@@ -735,8 +1076,19 @@ public class TestWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextArea3;
+    private javax.swing.JTextArea jTextArea4;
+    private javax.swing.JLabel jl_msg;
     private javax.swing.JPanel jp_biometric;
     private javax.swing.JPanel jp_coordination;
     private javax.swing.JPanel jp_flexibility;
@@ -753,9 +1105,18 @@ public class TestWindow extends javax.swing.JFrame {
     private physical_condition.customs.RadioButton rb_coo_3;
     private physical_condition.customs.RadioButton rb_coo_4;
     private physical_condition.customs.RadioButton rb_coo_5;
+    private physical_condition.customs.RadioButton rb_fle_1;
+    private physical_condition.customs.RadioButton rb_fle_2;
+    private physical_condition.customs.RadioButton rb_fle_3;
+    private physical_condition.customs.RadioButton rb_fle_4;
+    private physical_condition.customs.RadioButton rb_fle_5;
+    private physical_condition.customs.RadioButton rb_fle_6;
     private physical_condition.customs.MaterialTabbed tabbed;
     private physical_condition.customs.TextField tf_age;
     private physical_condition.customs.TextField tf_height;
+    private physical_condition.customs.TextField tf_pulse1;
+    private physical_condition.customs.TextField tf_pulse2;
+    private physical_condition.customs.TextField tf_repeat;
     private physical_condition.customs.TextField tf_weight;
     // End of variables declaration//GEN-END:variables
 
