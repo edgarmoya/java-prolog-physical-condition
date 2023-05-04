@@ -446,9 +446,6 @@
                     </Property>
                     <Property name="iconTextGap" type="int" value="8"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rb_coo_1ActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="physical_condition.customs.RadioButton" name="rb_coo_2">
                   <Properties>
@@ -491,9 +488,6 @@
                     </Property>
                     <Property name="iconTextGap" type="int" value="8"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rb_coo_5ActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="physical_condition.customs.RadioButton" name="rb_coo_4">
                   <Properties>

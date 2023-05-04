@@ -297,11 +297,6 @@ public class TestWindow extends javax.swing.JFrame {
         rb_coo_1.setFocusPainted(false);
         rb_coo_1.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         rb_coo_1.setIconTextGap(8);
-        rb_coo_1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rb_coo_1ActionPerformed(evt);
-            }
-        });
 
         bgroup_coordination.add(rb_coo_2);
         rb_coo_2.setText("Mantiene el equilibrio al menos cinco segundos, aunque sea necesario balancearse.");
@@ -323,11 +318,6 @@ public class TestWindow extends javax.swing.JFrame {
         rb_coo_5.setFocusPainted(false);
         rb_coo_5.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         rb_coo_5.setIconTextGap(8);
-        rb_coo_5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rb_coo_5ActionPerformed(evt);
-            }
-        });
 
         bgroup_coordination.add(rb_coo_4);
         rb_coo_4.setText("Mantiene el equilibrio al menos cinco segundos con los ojos cerrados, aunque sea balanceándose.");
@@ -846,14 +836,6 @@ public class TestWindow extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btn_mainmenuActionPerformed
 
-    private void rb_coo_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_coo_1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rb_coo_1ActionPerformed
-
-    private void rb_coo_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_coo_5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rb_coo_5ActionPerformed
-
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         MainWindow mw = new MainWindow();
         mw.setVisible(true);
@@ -1050,10 +1032,10 @@ public class TestWindow extends javax.swing.JFrame {
     
     private String connect_with_prolog(){
         String[] files = new String[1];
-        files[0] = "src/physical_condition/file.pl";
+        files[0] = "src/physical_condition/prolog.pl";
         Connection c = new Connection(files);
 
-        String res = c.sintomas();
+        String res = c.condition();
         return res;
     }
 

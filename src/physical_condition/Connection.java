@@ -24,10 +24,10 @@ public class Connection {
         }
     }
 
-    // sintomas que presenta 'Sultán'
-    public String sintomas() {
+    // consultar condición física
+    public String condition() {
         String res = "";
-        consult = "sintoma('Sultan', X).";
+        consult = "condicion('Sultan', X).";
         query = new Query(consult);
 
         if (!query.hasSolution()) {
@@ -40,28 +40,5 @@ public class Connection {
             }
         }
         return res;
-    }
-
-    //Parejas que no tienen hijos
-    public String[] consulta2() {
-        consult = "no_hijos(N1,A1,N2,A2).";
-        query = new Query(consult);
-
-        String resultado[] = new String[2];
-
-        resultado[0] = "Consulta\n\n?- " + consult;
-        resultado[1] = "Parejas que no tienen hijos\n\n";
-
-        if (!query.hasSolution()) {
-            resultado[1] += "No se encontraron\n";
-        } else {
-            //ciclo para concatenar todas las soluciones de la consulta
-            while (query.hasMoreSolutions()) {
-                solution = query.nextSolution();
-                resultado[1] += solution.get("N1") + " " + solution.get("A1") + "\n";
-                resultado[1] += solution.get("N2") + " " + solution.get("A2") + "\n";
-            }
-        }
-        return resultado;
     }
 }
