@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 import java.util.regex.Pattern;
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
+import javax.swing.JOptionPane;
 import physical_condition.Connection;
 import physical_condition.customs.Button;
 
@@ -883,7 +884,7 @@ public class TestWindow extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Window".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -924,7 +925,7 @@ public class TestWindow extends javax.swing.JFrame {
     
     private void actionFinish() {
         double weight = Double.parseDouble(tf_weight.getText());
-        double height = Double.parseDouble(tf_height.getText());
+        double height = Double.parseDouble(tf_height.getText())/100;
         if (is_biometric_valid() && is_strenght_valid() && is_resistance_valid()) {
             // obtener datos insertados 
             int age = Integer.parseInt(tf_age.getText());
@@ -934,11 +935,25 @@ public class TestWindow extends javax.swing.JFrame {
             int heart_rate = heart_rate_difference();
             // consultar el prolog
             String[] msg = connect_with_prolog(age, weight, height, option_coordination, option_flexibility, strenght_repeats, heart_rate);
-            ResultWindow rw = new ResultWindow();
+            // mostar dialogo con resultado
+            ResultDialog rw = new ResultDialog(null, true);
             rw.setPoints(msg[0]);
             rw.setMessage(msg[1]);
             rw.setVisible(true);
-       }  
+            // accion a realizar
+            if (rw.getAction().equals("menu")){
+                MainWindow mw = new MainWindow();
+                mw.setVisible(true);
+                this.dispose();
+            }else{           
+                clean_fields();
+                tf_age.requestFocus();
+                enabled_tabs(false);
+                tabbed.setSelectedIndex(0);
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "No ha completado todas las pruebas, compruebe los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     private String optionSelected(ButtonGroup button_group){
@@ -1015,6 +1030,17 @@ public class TestWindow extends javax.swing.JFrame {
         int pulse1 = Integer.parseInt(tf_pulse1.getText());
         int pulse2 =  Integer.parseInt(tf_pulse2.getText());     
         return (pulse2*2) - (pulse1*2);       
+    }
+    
+    private void clean_fields(){
+        tf_age.setText("");
+        tf_weight.setText("");
+        tf_height.setText("");
+        rb_coo_1.setSelected(true);
+        rb_fle_1.setSelected(true);
+        tf_repeat.setText("");
+        tf_pulse1.setText("");
+        tf_pulse2.setText("");       
     }
     
     private String[] connect_with_prolog(int age, double weight, double height, String coordination, String flexibility, int strong, int resistence){
