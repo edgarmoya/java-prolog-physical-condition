@@ -77,7 +77,7 @@ mensaje(_, 'Es un resultado digno de un deportista. El objetivo es mantener este
 
 
 % Entrada de datos
-prueba(_, Peso, Altura, _, _, _, _, _, 'Obesidad') :- mala_condicion(Peso, Altura), !, fail.
+prueba(_, Peso, Altura, _, _, _, _, 0, 'Obesidad') :- mala_condicion(Peso, Altura), !.
 prueba(Edad, _, _, Coo, Fle, For, Res, Puntos, Mensaje) :- 
     puntos_coordinacion(Edad, Coo, PuntosCoo), 
     puntos_flexibilidad(Edad, Fle, PuntosFle), 
