@@ -31,8 +31,13 @@ public class ResultDialog extends javax.swing.JDialog {
         labelMessage = new javax.swing.JTextArea();
         btn_mainmenu = new physical_condition.customs.Button();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Resultado");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -143,6 +148,11 @@ public class ResultDialog extends javax.swing.JDialog {
         action = "menu";
         this.dispose();
     }//GEN-LAST:event_btn_mainmenuActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        action = "menu";
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
