@@ -457,42 +457,42 @@ public class TestWindow extends javax.swing.JFrame {
         bgroup_flexibility.add(rb_fle_1);
         rb_fle_1.setSelected(true);
         rb_fle_1.setText("La distancia entre los dedos de las manos y los dedos de los pies es más de un palmo.");
-        rb_fle_1.setActionCommand("No mantiene el equilibrio");
+        rb_fle_1.setActionCommand("Mas de un palmo");
         rb_fle_1.setFocusPainted(false);
         rb_fle_1.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         rb_fle_1.setIconTextGap(8);
 
         bgroup_flexibility.add(rb_fle_2);
         rb_fle_2.setText("La distancia es aproximadamente de un palmo.");
-        rb_fle_2.setActionCommand("No mantiene el equilibrio");
+        rb_fle_2.setActionCommand("Aproximadamente un palmo");
         rb_fle_2.setFocusPainted(false);
         rb_fle_2.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         rb_fle_2.setIconTextGap(8);
 
         bgroup_flexibility.add(rb_fle_3);
         rb_fle_3.setText("La distancia equivale a la longitud del dedo índice.");
-        rb_fle_3.setActionCommand("No mantiene el equilibrio");
+        rb_fle_3.setActionCommand("Longitud del dedo indice");
         rb_fle_3.setFocusPainted(false);
         rb_fle_3.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         rb_fle_3.setIconTextGap(8);
 
         bgroup_flexibility.add(rb_fle_4);
         rb_fle_4.setText("El dedo índice toca las puntas de los dedos de los pies.");
-        rb_fle_4.setActionCommand("No mantiene el equilibrio");
+        rb_fle_4.setActionCommand("El dedo indice toca la punta de los pies");
         rb_fle_4.setFocusPainted(false);
         rb_fle_4.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         rb_fle_4.setIconTextGap(8);
 
         bgroup_flexibility.add(rb_fle_5);
         rb_fle_5.setText("Las puntas de los dedos de las manos se tocan con las puntas de los dedos de los pies.");
-        rb_fle_5.setActionCommand("No mantiene el equilibrio");
+        rb_fle_5.setActionCommand("Las puntas de los dedos de las manos se tocan con las puntas de los dedos de los pies");
         rb_fle_5.setFocusPainted(false);
         rb_fle_5.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         rb_fle_5.setIconTextGap(8);
 
         bgroup_flexibility.add(rb_fle_6);
         rb_fle_6.setText("Las manos cubren los dedos de los pies en toda su longitud.");
-        rb_fle_6.setActionCommand("No mantiene el equilibrio");
+        rb_fle_6.setActionCommand("Las manos cubren los dedos de los pies");
         rb_fle_6.setFocusPainted(false);
         rb_fle_6.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         rb_fle_6.setIconTextGap(8);
@@ -923,40 +923,27 @@ public class TestWindow extends javax.swing.JFrame {
     }
     
     private void actionFinish() {
-        String weight = tf_weight.getText();
-        String height = tf_height.getText();
+        double weight = Double.parseDouble(tf_weight.getText());
+        double height = Double.parseDouble(tf_height.getText());
         if (is_biometric_valid() && is_strenght_valid() && is_resistance_valid()) {
             // obtener datos insertados 
-            System.out.println("Valid fields");
-            String imc = imc(Double.parseDouble(weight), Double.parseDouble(height));
-            String age = tf_age.getText();
+            int age = Integer.parseInt(tf_age.getText());
             String option_coordination = optionSelected(bgroup_coordination);
             String option_flexibility = optionSelected(bgroup_flexibility);
-            String strenght_repeats = tf_repeat.getText();
+            int strenght_repeats = Integer.parseInt(tf_repeat.getText());
             int heart_rate = heart_rate_difference();
             // consultar el prolog
-            String msg = connect_with_prolog();
+            String[] msg = connect_with_prolog(age, weight, height, option_coordination, option_flexibility, strenght_repeats, heart_rate);
+            ResultWindow rw = new ResultWindow();
+            rw.setPoints(msg[0]);
+            rw.setMessage(msg[1]);
+            rw.setVisible(true);
        }  
     }
     
     private String optionSelected(ButtonGroup button_group){
         ButtonModel selectedButtonModel = button_group.getSelection();
         return selectedButtonModel.getActionCommand();
-    }
-    
-    private String imc(double wieght, double height){
-        String res = "";
-        double imc = wieght/(height*height);
-        if (imc < 18.5){
-            res = "bajo peso";
-        }else if(imc < 25){
-            res = "normal";
-        }else if (imc < 30){
-            res = "sobrepeso";
-        }else{  
-            res = "obesidad";
-        }
-        return res;
     }
     
     private boolean isInteger(String input){
@@ -1030,12 +1017,12 @@ public class TestWindow extends javax.swing.JFrame {
         return (pulse2*2) - (pulse1*2);       
     }
     
-    private String connect_with_prolog(){
+    private String[] connect_with_prolog(int age, double weight, double height, String coordination, String flexibility, int strong, int resistence){
         String[] files = new String[1];
         files[0] = "src/physical_condition/prolog.pl";
         Connection c = new Connection(files);
 
-        String res = c.condition();
+        String[] res = c.condition(age, weight, height, coordination, flexibility, strong, resistence);
         return res;
     }
 

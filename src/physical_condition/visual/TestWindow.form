@@ -746,7 +746,7 @@
                     </Property>
                     <Property name="selected" type="boolean" value="true"/>
                     <Property name="text" type="java.lang.String" value="La distancia entre los dedos de las manos y los dedos de los pies es m&#xe1;s de un palmo."/>
-                    <Property name="actionCommand" type="java.lang.String" value="No mantiene el equilibrio"/>
+                    <Property name="actionCommand" type="java.lang.String" value="Mas de un palmo"/>
                     <Property name="focusPainted" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="13" style="0"/>
@@ -760,7 +760,7 @@
                       <ComponentRef name="bgroup_flexibility"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="La distancia es aproximadamente de un palmo."/>
-                    <Property name="actionCommand" type="java.lang.String" value="No mantiene el equilibrio"/>
+                    <Property name="actionCommand" type="java.lang.String" value="Aproximadamente un palmo"/>
                     <Property name="focusPainted" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="13" style="0"/>
@@ -774,7 +774,7 @@
                       <ComponentRef name="bgroup_flexibility"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="La distancia equivale a la longitud del dedo &#xed;ndice."/>
-                    <Property name="actionCommand" type="java.lang.String" value="No mantiene el equilibrio"/>
+                    <Property name="actionCommand" type="java.lang.String" value="Longitud del dedo indice"/>
                     <Property name="focusPainted" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="13" style="0"/>
@@ -788,7 +788,7 @@
                       <ComponentRef name="bgroup_flexibility"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="El dedo &#xed;ndice toca las puntas de los dedos de los pies."/>
-                    <Property name="actionCommand" type="java.lang.String" value="No mantiene el equilibrio"/>
+                    <Property name="actionCommand" type="java.lang.String" value="El dedo indice toca la punta de los pies"/>
                     <Property name="focusPainted" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="13" style="0"/>
@@ -802,7 +802,7 @@
                       <ComponentRef name="bgroup_flexibility"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Las puntas de los dedos de las manos se tocan con las puntas de los dedos de los pies."/>
-                    <Property name="actionCommand" type="java.lang.String" value="No mantiene el equilibrio"/>
+                    <Property name="actionCommand" type="java.lang.String" value="Las puntas de los dedos de las manos se tocan con las puntas de los dedos de los pies"/>
                     <Property name="focusPainted" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="13" style="0"/>
@@ -816,7 +816,7 @@
                       <ComponentRef name="bgroup_flexibility"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Las manos cubren los dedos de los pies en toda su longitud."/>
-                    <Property name="actionCommand" type="java.lang.String" value="No mantiene el equilibrio"/>
+                    <Property name="actionCommand" type="java.lang.String" value="Las manos cubren los dedos de los pies"/>
                     <Property name="focusPainted" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="13" style="0"/>
