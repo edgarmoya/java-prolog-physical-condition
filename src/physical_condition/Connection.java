@@ -4,6 +4,7 @@ import java.util.Map;
 import javax.swing.JOptionPane;
 import org.jpl7.Query;
 import org.jpl7.Term;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Se encarga de gestionar la consulta de las bases de conocimiento.
@@ -25,18 +26,26 @@ public class Connection {
     }
 
     // consultar condición física
-    public String condition() {
-        String res = "";
-        consult = "condicion('Sultan', X).";
+    public String[] condition(int edad, double peso, double altura, String coord, String flex, int fortaleza, int resistencia) {
+        String[] res = new String[2];
+        consult = "prueba("+edad+","+peso+","+altura+",'"+coord+"','"+flex+"',"+fortaleza+","+resistencia+", Puntos, Msj).";
         query = new Query(consult);
 
         if (!query.hasSolution()) {
-            res += "No se encontraron\n";
+            res[0] += "No se encontraron\n";
         } else {
             //ciclo para concatenar todas las soluciones de la consulta
             while (query.hasMoreSolutions()) {
-                solution = query.nextSolution();
-                res += solution.get("X") + "\n";
+                solution = query.nextSolution();                
+                String puntos = solution.get("Puntos").toString();
+                String msj = solution.get("Msj").toString();
+                
+                // Decodificar la cadena 
+                byte[] bytes = msj.getBytes(StandardCharsets.ISO_8859_1);
+                String mensaje = new String(bytes, StandardCharsets.UTF_8);
+                
+                res[0] = puntos;
+                res[1] = mensaje;
             }
         }
         return res;
