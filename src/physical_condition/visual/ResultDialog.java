@@ -41,7 +41,7 @@ public class ResultDialog extends javax.swing.JDialog {
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
 
-        labelPoints.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelPoints.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         labelPoints.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelPoints.setText("Puntos");
 
@@ -199,7 +199,8 @@ public class ResultDialog extends javax.swing.JDialog {
     }
     
     public void setMessage(String msg){
-        labelMessage.setText(msg);
+        String inside = msg.substring(1, msg.length() - 1);
+        labelMessage.setText(inside);
     }
     
     public String getAction(){
