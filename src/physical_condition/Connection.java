@@ -36,9 +36,9 @@ public class Connection {
             resultModel.setStatus("No se encontró respuesta");
         } else {
             //ciclo para concatenar todas las soluciones de la consulta
-            while (query.hasMoreSolutions()) {              
+            while (query.hasMoreSolutions()) {
                 solution = query.nextSolution();
-                
+
                 // Obtiene la lista de resultados
                 Term results = solution.get("Pautas");
                 // Convierte la lista de resultados a una lista de Java
@@ -47,7 +47,7 @@ public class Connection {
                     String t = resultModel.decode(result.toString());
                     listPautas.add(resultModel.inside(t));
                 }
-                               
+
                 String puntos = solution.get("Puntos").toString();
                 String msj = solution.get("Msj").toString();
 
@@ -58,5 +58,24 @@ public class Connection {
             }
         }
         return resultModel;
+    }
+
+    public List<String> types_conditions() {
+        List<String> res = new ArrayList<>();
+        consult = "condiciones(C).";
+        query = new Query(consult);
+
+        if (!query.hasSolution()) {
+            return res;
+        } else {
+            solution = query.oneSolution();
+            // Obtiene la lista de resultados
+            Term results = solution.get("C");
+            // Convierte la lista de resultados a una lista de Java
+            for (Term result : results.listToTermArray()) {
+                res.add(result.toString());
+            }
+        }
+        return res;
     }
 }

@@ -8,6 +8,8 @@ condicion('normal', 'buena').
 condicion('sobrepeso', 'mala').
 condicion('obesidad', 'mala').
 
+condiciones(L) :- findall(X, condicion(X, _), L).
+
 imc(Peso, Altura, Ind) :- Ind is Peso/(Altura*Altura).
 tipo_condicion(Peso, Altura, Condicion) :-
     imc(Peso, Altura, Ind),

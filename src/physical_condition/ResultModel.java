@@ -26,7 +26,10 @@ public class ResultModel {
     }
     
     public String inside(String text){
-        return text.substring(1, text.length() - 1);
+        if (text.charAt(0) == '\''){
+            return text.substring(1, text.length() - 1);
+        }
+        return text;
     } 
 
     public String getPoints() {

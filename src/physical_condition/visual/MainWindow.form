@@ -105,7 +105,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/physical_condition/images/icon_test.png"/>
+              <Image iconType="3" name="/physical_condition/images/icon_gym.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="REALIZAR PRUEBA"/>
             <Property name="toolTipText" type="java.lang.String" value="Realizar diagn&#xf3;stico para conocer la condici&#xf3;n f&#xed;sica"/>
