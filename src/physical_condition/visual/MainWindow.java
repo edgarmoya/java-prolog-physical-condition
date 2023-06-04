@@ -21,7 +21,6 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnGroup = new javax.swing.ButtonGroup();
         bg = new javax.swing.JPanel();
         btn_test = new physical_condition.customs.Button();
         btn_questions = new physical_condition.customs.Button();
@@ -191,7 +190,6 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
-    private javax.swing.ButtonGroup btnGroup;
     private physical_condition.customs.Button btn_exit;
     private physical_condition.customs.Button btn_questions;
     private physical_condition.customs.Button btn_test;

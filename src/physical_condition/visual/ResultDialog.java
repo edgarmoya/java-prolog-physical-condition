@@ -2,6 +2,7 @@ package physical_condition.visual;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.util.List;
 
 public class ResultDialog extends javax.swing.JDialog {
 
@@ -30,6 +31,9 @@ public class ResultDialog extends javax.swing.JDialog {
         jScrollPane3 = new javax.swing.JScrollPane();
         labelMessage = new javax.swing.JTextArea();
         btn_mainmenu = new physical_condition.customs.Button();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        labelSuggestion = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Resultado");
@@ -67,7 +71,7 @@ public class ResultDialog extends javax.swing.JDialog {
         labelMessage.setColumns(20);
         labelMessage.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelMessage.setLineWrap(true);
-        labelMessage.setRows(4);
+        labelMessage.setRows(2);
         labelMessage.setWrapStyleWord(true);
         labelMessage.setAlignmentX(0.0F);
         labelMessage.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -87,6 +91,22 @@ public class ResultDialog extends javax.swing.JDialog {
             }
         });
 
+        jScrollPane4.setBorder(null);
+
+        labelSuggestion.setBackground(new java.awt.Color(255, 255, 255));
+        labelSuggestion.setColumns(20);
+        labelSuggestion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelSuggestion.setLineWrap(true);
+        labelSuggestion.setRows(6);
+        labelSuggestion.setWrapStyleWord(true);
+        labelSuggestion.setAlignmentX(0.0F);
+        labelSuggestion.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        labelSuggestion.setFocusable(false);
+        jScrollPane4.setViewportView(labelSuggestion);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setText("Resultados:");
+
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
         bgLayout.setHorizontalGroup(
@@ -94,42 +114,48 @@ public class ResultDialog extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(btn_mainmenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_again, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
             .addGroup(bgLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(icon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3)
-                    .addComponent(labelPoints, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(32, 32, 32))
+                    .addGroup(bgLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(bgLayout.createSequentialGroup()
+                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(icon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelPoints, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
+                            .addComponent(jScrollPane4))
+                        .addGap(32, 32, 32))))
         );
         bgLayout.setVerticalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(icon, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(bgLayout.createSequentialGroup()
-                        .addComponent(labelPoints)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgLayout.createSequentialGroup()
-                        .addGap(170, 170, 170)
-                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn_again, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_mainmenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelPoints)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel1)
+                .addGap(2, 2, 2)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_again, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_mainmenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,6 +229,14 @@ public class ResultDialog extends javax.swing.JDialog {
         labelMessage.setText(inside);
     }
     
+    public void setSuggestions(List<String> list){ 
+        String msg = "";
+        for (int i = 0; i < list.size(); i++) {
+            msg += "● " + list.get(i) + "\n";
+        }
+        labelSuggestion.setText(msg);
+    }
+    
     public String getAction(){
         return action;
     }
@@ -212,8 +246,11 @@ public class ResultDialog extends javax.swing.JDialog {
     private physical_condition.customs.Button btn_again;
     private physical_condition.customs.Button btn_mainmenu;
     private javax.swing.JLabel icon;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea labelMessage;
     private javax.swing.JLabel labelPoints;
+    private javax.swing.JTextArea labelSuggestion;
     // End of variables declaration//GEN-END:variables
 }

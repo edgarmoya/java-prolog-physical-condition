@@ -4,7 +4,8 @@ import java.util.Map;
 import javax.swing.JOptionPane;
 import org.jpl7.Query;
 import org.jpl7.Term;
-import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Se encarga de gestionar la consulta de las bases de conocimiento.
@@ -26,28 +27,36 @@ public class Connection {
     }
 
     // consultar condición física
-    public String[] condition(int edad, double peso, double altura, String coord, String flex, int fortaleza, int resistencia) {
-        String[] res = new String[2];
-        consult = "prueba("+edad+","+peso+","+altura+",'"+coord+"','"+flex+"',"+fortaleza+","+resistencia+", Puntos, Msj).";
+    public ResultModel condition(int edad, double peso, double altura, String coord, String flex, int fortaleza, int resistencia) {
+        ResultModel resultModel = new ResultModel();
+        consult = "prueba(" + edad + "," + peso + "," + altura + ",'" + coord + "','" + flex + "'," + fortaleza + "," + resistencia + ", Puntos, Pautas, Msj).";
         query = new Query(consult);
 
         if (!query.hasSolution()) {
-            res[0] += "No se encontraron\n";
+            resultModel.setStatus("No se encontró respuesta");
         } else {
             //ciclo para concatenar todas las soluciones de la consulta
-            while (query.hasMoreSolutions()) {
-                solution = query.nextSolution();                
+            while (query.hasMoreSolutions()) {              
+                solution = query.nextSolution();
+                
+                // Obtiene la lista de resultados
+                Term results = solution.get("Pautas");
+                // Convierte la lista de resultados a una lista de Java
+                List<String> listPautas = new ArrayList<>();
+                for (Term result : results.listToTermArray()) {
+                    String t = resultModel.decode(result.toString());
+                    listPautas.add(resultModel.inside(t));
+                }
+                               
                 String puntos = solution.get("Puntos").toString();
                 String msj = solution.get("Msj").toString();
-                
-                // Decodificar la cadena 
-                byte[] bytes = msj.getBytes(StandardCharsets.ISO_8859_1);
-                String mensaje = new String(bytes, StandardCharsets.UTF_8);
-                
-                res[0] = puntos;
-                res[1] = mensaje;
+
+                resultModel.setPoints(puntos);
+                resultModel.setMessage(resultModel.decode(msj));
+                resultModel.setSuggestions(listPautas);
+                resultModel.setStatus("Se encontró respuesta");
             }
         }
-        return res;
+        return resultModel;
     }
 }

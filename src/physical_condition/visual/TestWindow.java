@@ -8,6 +8,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
 import javax.swing.JOptionPane;
 import physical_condition.Connection;
+import physical_condition.ResultModel;
 import physical_condition.customs.Button;
 
 public class TestWindow extends javax.swing.JFrame {
@@ -934,11 +935,12 @@ public class TestWindow extends javax.swing.JFrame {
             int strenght_repeats = Integer.parseInt(tf_repeat.getText());
             int heart_rate = heart_rate_difference();
             // consultar el prolog
-            String[] msg = connect_with_prolog(age, weight, height, option_coordination, option_flexibility, strenght_repeats, heart_rate);
+            ResultModel res = connect_with_prolog(age, weight, height, option_coordination, option_flexibility, strenght_repeats, heart_rate);
             // mostar dialogo con resultado
             ResultDialog rw = new ResultDialog(null, true);
-            rw.setPoints(msg[0]);
-            rw.setMessage(msg[1]);
+            rw.setPoints(res.getPoints());
+            rw.setMessage(res.getMessage());
+            rw.setSuggestions(res.getSuggestions());
             rw.setVisible(true);
             // accion a realizar
             if (rw.getAction().equals("menu")){
@@ -1043,12 +1045,12 @@ public class TestWindow extends javax.swing.JFrame {
         tf_pulse2.setText("");       
     }
     
-    private String[] connect_with_prolog(int age, double weight, double height, String coordination, String flexibility, int strong, int resistence){
+    private ResultModel connect_with_prolog(int age, double weight, double height, String coordination, String flexibility, int strong, int resistence){
         String[] files = new String[1];
         files[0] = "src/physical_condition/prolog.pl";
         Connection c = new Connection(files);
 
-        String[] res = c.condition(age, weight, height, coordination, flexibility, strong, resistence);
+        ResultModel res = c.condition(age, weight, height, coordination, flexibility, strong, resistence);
         return res;
     }
 
