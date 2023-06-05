@@ -21,7 +21,6 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnGroup = new javax.swing.ButtonGroup();
         bg = new javax.swing.JPanel();
         btn_test = new physical_condition.customs.Button();
         btn_questions = new physical_condition.customs.Button();
@@ -38,7 +37,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         btn_test.setBackground(new java.awt.Color(0, 102, 255));
         btn_test.setForeground(new java.awt.Color(255, 255, 255));
-        btn_test.setIcon(new javax.swing.ImageIcon(getClass().getResource("/physical_condition/images/icon_test.png"))); // NOI18N
+        btn_test.setIcon(new javax.swing.ImageIcon(getClass().getResource("/physical_condition/images/icon_gym.png"))); // NOI18N
         btn_test.setText("REALIZAR PRUEBA");
         btn_test.setToolTipText("Realizar diagnóstico para conocer la condición física");
         btn_test.setFocusPainted(false);
@@ -144,7 +143,9 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_questionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_questionsActionPerformed
-        System.out.println("questions");
+        FAQWindow faqw = new FAQWindow();
+        faqw.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btn_questionsActionPerformed
 
     private void btn_testActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_testActionPerformed
@@ -191,7 +192,6 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
-    private javax.swing.ButtonGroup btnGroup;
     private physical_condition.customs.Button btn_exit;
     private physical_condition.customs.Button btn_questions;
     private physical_condition.customs.Button btn_test;
