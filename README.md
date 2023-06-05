@@ -1,6 +1,6 @@
 # java-prolog-physical-condition
 
-Sistema experto desarrollado en #java para el conocimiento de la condición física de una persona. Incluye una base de conocimiento utilizando #prolog. 
+Sistema experto desarrollado en ``java`` para el conocimiento de la condición física de una persona. Incluye una base de conocimiento utilizando ``prolog``. 
 
 Está conformado por varios test, los cuales se muestran a continuación:
 
@@ -8,7 +8,7 @@ Está conformado por varios test, los cuales se muestran a continuación:
 
 Introduzca su peso (Kg) y altura (centímetros).
 
-Nota: Con este dato se calcula el IMC (peso / altura^2), el resultado se valorará de la siguiente forma:
+Nota: Con este dato se calcula el IMC ``(peso / altura^2)``, el resultado se valorará de la siguiente forma:
 
 | **Composición corporal**     |  **Índice de masa corporal (IMC)**       |
 | ------------------------ | --------------------------------- |
@@ -145,5 +145,5 @@ Lo primero que se debe hacer es **tomarse el pulso**. Para ello se cuentan los 
 ---
 
 **Autores:**
-- @edgarmoya
+- Edgar Moya Cáceres
 - Mario Abel Ortega Sánchez
