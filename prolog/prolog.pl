@@ -31,11 +31,11 @@ puntos_coordinacion(Edad, 'Mantiene el equilibrio al menos cinco segundos con lo
     (Edad >= 45, Puntos is 4) ; (Edad < 45, Puntos is 3).
 puntos_coordinacion(_, 'Mantiene el equilibrio al menos cinco segundos con los ojos cerrados y los brazos estirados por encima de la cabeza', 4).
 
-% Pautas según la puntuación obtenida en la prueba de coordinación
-pautas_coordinacion(Puntos, 'Tienen problemas evidentes con el equilibrio, pero no hay que preocuparse demasiado, porque todavía pueden solucionarse con un entrenamiento específico.') :-
+% Resultado según la puntuación obtenida en la prueba de coordinación
+resultado_coordinacion(Puntos, 'Tienen problemas evidentes con el equilibrio, pero no hay que preocuparse demasiado, porque todavía pueden solucionarse con un entrenamiento específico.') :-
     (Puntos = 1; Puntos = 2), !.
-pautas_coordinacion(3, 'El equilibrio está dentro de lo aceptable, pero puede mejorarse mucho.').
-pautas_coordinacion(4, 'La capacidad de coordinación ya se ha desarrollado de modo idóneo.').
+resultado_coordinacion(3, 'El equilibrio está dentro de lo aceptable, pero puede mejorarse mucho.').
+resultado_coordinacion(4, 'La capacidad de coordinación ya se ha desarrollado de modo idóneo.').
 
 
 
@@ -51,11 +51,11 @@ puntos_flexibilidad(Edad, 'Las puntas de los dedos de las manos se tocan con las
     (Edad >= 45, Puntos is 5) ; (Edad < 45, Puntos is 4).
 puntos_flexibilidad(_, 'Las manos cubren los dedos de los pies', 5).
 
-% Pautas según la puntuación obtenida en la prueba de flexibilidad
-pautas_flexibilidad(Puntos, 'Posee una seria dificultad para prevenir lesiones, envejecer con salud y desarrollar adecuadamente una práctica deportiva. Se puede hacer mucho para mejorar la flexibilidad.') :-
+% Resultado según la puntuación obtenida en la prueba de flexibilidad
+resultado_flexibilidad(Puntos, 'Posee una seria dificultad para prevenir lesiones, envejecer con salud y desarrollar adecuadamente una práctica deportiva. Se puede hacer mucho para mejorar la flexibilidad.') :-
     (Puntos = 1; Puntos = 2), !.
-pautas_flexibilidad(3, 'Puede aumentar la flexibilidad, aunque es un buen resultado.') :- !.
-pautas_flexibilidad(_, 'Su flexibilidad es mayor a la media. El objetivo es no oxidarse y se potenciará el rendimiento deportivo.').
+resultado_flexibilidad(3, 'Puede aumentar la flexibilidad, aunque es un buen resultado.') :- !.
+resultado_flexibilidad(_, 'Su flexibilidad es mayor a la media. El objetivo es no oxidarse y se potenciará el rendimiento deportivo.').
 
 
 
@@ -75,11 +75,11 @@ fuerza_Mas45(Rep, 3) :- Rep < 20, !.
 fuerza_Mas45(Rep, 4) :- Rep < 25, !.
 fuerza_Mas45(_, 5).
 
-% Pautas según la puntuación obtenida en la prueba de fortaleza
-pautas_fortaleza(Puntos, 'Está bastante alejado del típico modelo de deportista fuerte, pero también de personas corrientes. Los abdominales no están mínimamente desarrollados.') :-
+% Resultado según la puntuación obtenida en la prueba de fortaleza
+resultado_fortaleza(Puntos, 'Está bastante alejado del típico modelo de deportista fuerte, pero también de personas corrientes. Los abdominales no están mínimamente desarrollados.') :-
     (Puntos = 1; Puntos = 2), !.
-pautas_fortaleza(3, 'Posee una fortaleza abdominal dentro de la media de la población. Un poco más de entrenamiento puede traer muchos beneficios, por ejemplo, menos dolores de espalda.') :- !.
-pautas_fortaleza(_, 'La musculatura está bien desarrollada, debe mantenerla así de bien.').
+resultado_fortaleza(3, 'Posee una fortaleza abdominal dentro de la media de la población. Un poco más de entrenamiento puede traer muchos beneficios, por ejemplo, menos dolores de espalda.') :- !.
+resultado_fortaleza(_, 'La musculatura está bien desarrollada, debe mantenerla así de bien.').
 
 
 
@@ -99,14 +99,14 @@ resistencia_Mas45(Pulso, 3) :- Pulso >= 55, !.
 resistencia_Mas45(Pulso, 4) :- Pulso >= 50, !.
 resistencia_Mas45(_, 5).
 
-% Pautas según la puntuación obtenida en la prueba de fortaleza
-pautas_resistencia(1, 'La resistencia está en el mínimo, debe hacer un esfuerzo para mejorar.') :- !.
-pautas_resistencia(Puntos, 'Su resistencia es mejorable.') :-
+% Resultado según la puntuación obtenida en la prueba de fortaleza
+resultado_resistencia(1, 'La resistencia está en el mínimo, debe hacer un esfuerzo para mejorar.') :- !.
+resultado_resistencia(Puntos, 'Su resistencia es mejorable.') :-
     (Puntos = 2; Puntos = 3), !.
-pautas_resistencia(_, 'Goza de una resistencia de buena a óptima.').
+resultado_resistencia(_, 'Goza de una resistencia de buena a óptima.').
 
 
-% Mensaje final y pautas a responder según la puntuación
+% Mensaje final a responder según la puntuación final
 mensaje_final(Puntos, 'La condición física es deficiente. Lo primero que se debe hacer es moverse más en la vida cotidiana: subir las escaleras en lugar de coger los ascensores, bajarse del autobús una parada antes. Hay que convencerse de que el ejercicio físico no es algo que se haya inventado para los demás.') :- 
     Puntos >= 4, Puntos =< 6, !.
 mensaje_final(Puntos, 'La forma física no es buena, pero es un buen punto de partida. En muy poco tiempo se pueden apreciar los beneficios de realizar alguna actividad física con regularidad.') :- 
@@ -117,20 +117,21 @@ mensaje_final(Puntos, 'La condición física es muy buena. El objetivo es manten
     Puntos =< 17, !.
 mensaje_final(_, 'Es un resultado digno de un deportista. El objetivo es mantener este nivel y no dar ni un paso hacia atrás.').
 
-pautas(PCoo, PFle, PFor, PRes, [Coo, Fle, For, Res]) :- 
-    pautas_coordinacion(PCoo, Coo),
-    pautas_flexibilidad(PFle, Fle),
-    pautas_fortaleza(PFor, For),
-    pautas_resistencia(PRes, Res).
+% Lista con los resultados de todas las pruebas
+resultado(PCoo, PFle, PFor, PRes, [Coo, Fle, For, Res]) :- 
+    resultado_coordinacion(PCoo, Coo),
+    resultado_flexibilidad(PFle, Fle),
+    resultado_fortaleza(PFor, For),
+    resultado_resistencia(PRes, Res).
 
 
 % Entrada de datos
 prueba(_, Peso, Altura, _, _, _, _, 0, ['Le recomendamos que busque asesoramiento de un profesional de la salud, como un médico o un nutricionista. Estos profesionales pueden evaluar la situación de la persona, determinar si su peso es un problema de salud y, en caso afirmativo, desarrollar un plan de tratamiento personalizado.'], 'Su condición física no es buena, usted presenta sobrepeso.') :- mala_condicion(Peso, Altura), !.
-prueba(Edad, _, _, Coo, Fle, For, Res, Puntos, Pautas, Mensaje) :- 
+prueba(Edad, _, _, Coo, Fle, For, Res, Puntos, Resultado, Mensaje) :- 
     puntos_coordinacion(Edad, Coo, PuntosCoo),
     puntos_flexibilidad(Edad, Fle, PuntosFle),
     puntos_fortaleza(Edad, For, PuntosFor),
     puntos_resistencia(Edad, Res, PuntosRes),
     Puntos is PuntosCoo + PuntosFle + PuntosFor + PuntosRes,
-    pautas(PuntosCoo, PuntosFle, PuntosFor, PuntosRes, Pautas),
+    resultado(PuntosCoo, PuntosFle, PuntosFor, PuntosRes, Resultado),
     mensaje_final(Puntos, Mensaje).
