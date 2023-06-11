@@ -29,7 +29,7 @@ public class Connection {
     // consultar condición física
     public ResultModel condition(int edad, double peso, double altura, String coord, String flex, int fortaleza, int resistencia) {
         ResultModel resultModel = new ResultModel();
-        consult = "prueba(" + edad + "," + peso + "," + altura + ",'" + coord + "','" + flex + "'," + fortaleza + "," + resistencia + ", Puntos, Pautas, Msj).";
+        consult = "prueba(" + edad + "," + peso + "," + altura + ",'" + coord + "','" + flex + "'," + fortaleza + "," + resistencia + ", Puntos, Resultados, Msj).";
         query = new Query(consult);
 
         if (!query.hasSolution()) {
@@ -40,7 +40,7 @@ public class Connection {
                 solution = query.nextSolution();
 
                 // Obtiene la lista de resultados
-                Term results = solution.get("Pautas");
+                Term results = solution.get("Resultados");
                 // Convierte la lista de resultados a una lista de Java
                 List<String> listPautas = new ArrayList<>();
                 for (Term result : results.listToTermArray()) {

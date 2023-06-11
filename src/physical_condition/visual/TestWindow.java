@@ -1047,7 +1047,7 @@ public class TestWindow extends javax.swing.JFrame {
     
     private ResultModel connect_with_prolog(int age, double weight, double height, String coordination, String flexibility, int strong, int resistence){
         String[] files = new String[1];
-        files[0] = "src/physical_condition/prolog.pl";
+        files[0] = "prolog/prolog.pl";
         Connection c = new Connection(files);
 
         ResultModel res = c.condition(age, weight, height, coordination, flexibility, strong, resistence);

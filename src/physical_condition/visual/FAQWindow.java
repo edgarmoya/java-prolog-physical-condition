@@ -499,7 +499,7 @@ public class FAQWindow extends javax.swing.JFrame {
     private void setTypes(){
         ResultModel rm = new ResultModel();
         String[] files = new String[1];
-        files[0] = "src/physical_condition/prolog.pl";
+        files[0] = "prolog/prolog.pl";
         Connection c = new Connection(files);
         List<String> types = c.types_conditions();
         
